@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/Welcome5Element"
+  },
+  "definitions": {
+    "Welcome5Element": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "bookingid": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "bookingid"
+      ],
+      "title": "Welcome5Element"
+    }
+  }
+}
