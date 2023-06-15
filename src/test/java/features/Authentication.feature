@@ -1,9 +1,8 @@
 Feature: Authentication
-  // Done
-
+  #DONE
   @regression @happyPath
   Scenario: Get Auth token
-    When get auth token with following:
+    When get auth token with following credentials:
       | username | admin       |
       | password | password123 |
     Then the response status code should be 200
@@ -13,7 +12,7 @@ Feature: Authentication
   Scenario Outline: Auth negative test cases
     When send <username> and <password>
     Then the response status code should be 200
-    And error message should be <message>
+    And error message should be <message> for authentication
     Examples:
       | username | password      | message         |
       | admin    | null          | Bad credentials |
