@@ -52,26 +52,26 @@ Feature: Update booking
 
     Examples:
       | keys            | values     | statusCode |
-      | firstname       |            |            |
-      | lastname        |            |            |
-      | laame           | Tarar      |            |
-      | totalprice      | 100        |            |
-      | totalprice      | abc        |            |
-      | totalprice      |            |            |
-      | totaice         |            |            |
-      | depositpaid     | 231        |            |
-      | depositpaid     |            |            |
-      | depopaid        |            |            |
-      | chein           | 2018-01-01 |            |
-      | checkin         | 01-01-20   |            |
-      | checkin         |            |            |
-      | checkout        | 2018-01-02 |            |
-      | checkout        | 01-02-2018 |            |
-      | checut          | 2018-01-02 |            |
-      | additionalneeds |            |            |
-      | additneeds      | ad         |            |
-      | additionalneeds | 123        |            |
-      | additionalneeds | ***        |            |
+      | firstname       |            | 200        |
+      | lastname        |            | 200        |
+      | laame           | Tarar      | 200        |
+      | totalprice      | 100        | 200        |
+      | totalprice      | abc        | 200        |
+      | totalprice      |            | 200        |
+      | totaice         |            | 200        |
+      | depositpaid     | 231        | 200        |
+      | depositpaid     |            | 200        |
+      | depopaid        |            | 200        |
+      | chein           | 2018-01-01 | 200        |
+      | checkin         | 01-01-20   | 200        |
+      | checkin         |            | 200        |
+      | checkout        | 2018-01-02 | 200        |
+      | checkout        | 01-02-2018 | 200        |
+      | checut          | 2018-01-02 | 200        |
+      | additionalneeds |            | 200        |
+      | additneeds      | ad         | 200        |
+      | additionalneeds | 123        | 200        |
+      | additionalneeds | ***        | 200        |
 
 
 
