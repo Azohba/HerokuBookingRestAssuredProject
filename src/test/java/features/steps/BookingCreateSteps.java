@@ -20,7 +20,7 @@ public class BookingCreateSteps {
         this.context = context;
     }
 
-    @When("users create a new booking with the following details:")
+    @When("the user creates a new booking with the following details:")
     public void usersCreateANewBookingWithTheFollowingDetails(DataTable table) throws ParseException {
         Map<String, String> createBookingElements = table.asMaps().get(0);
         context.response = bookingHelper.createBooking(createBookingElements.get("firstname")

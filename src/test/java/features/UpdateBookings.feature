@@ -2,16 +2,18 @@
 Feature: Update booking
 
   Background: Set endpoint and create new booking
-    Given set endpoint as "/booking"
-    And users create a new booking with the following details:
+    Given set endpoint as "/auth"
+    And get auth token with following credentials admin & password123
+    And set endpoint as "/booking"
+    And the user creates a new booking with the following details:
       | firstname | lastname | totalprice | depositpaid | checkin    | checkout   | additionalneeds |
       | Onur      | T.       | 100        | true        | 2018-01-01 | 2018-01-02 | komili          |
+    Then the response status code should be 200
+
 
   @regression @happyPath
   Scenario: Update booking partially with basic authentication
-    Given set endpoint as "/auth"
-    And get auth token with following credentials admin & password123
-    When user update following fields:
+    When user updates the following fields:
       | firstname | totalprice |
       | Spidey    | 210        |
     Then the response status code should be 200
@@ -24,7 +26,7 @@ Feature: Update booking
 
   @regression @negativeCases
   Scenario Outline: Try to send update request without token
-    When user try to update following fields without token:
+    When user tries to update the following fields without a token:
       | firstname | Onur     |
       | <keys>    | <values> |
     Then the response status code should be 403
@@ -42,9 +44,7 @@ Feature: Update booking
 
   @regression @negativeCases
   Scenario Outline: Partially update negative scenarios
-    Given set endpoint as "/auth"
-    And get auth token with following credentials admin & password123
-    When user update following fields:
+    When user updates the following fields:
       | firstname | totalprice |
       | <keys>    | <values>   |
     Then the response status code should be <statusCode>
@@ -71,7 +71,7 @@ Feature: Update booking
       | additionalneeds |            |            |
       | additneeds      | ad         |            |
       | additionalneeds | 123        |            |
-      | additionalneeds | ***        |            |  |
+      | additionalneeds | ***        |            |
 
 
 

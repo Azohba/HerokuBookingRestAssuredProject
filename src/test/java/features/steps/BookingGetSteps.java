@@ -4,6 +4,7 @@ import context.ContextStore;
 import helpers.BookingHelper;
 import helpers.CommonHelper;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import models.response.CreateBookingResponse;
 import org.junit.Assert;
@@ -40,10 +41,10 @@ public class BookingGetSteps {
 
     }
 
-    @When("users get booking details with ID")
+    @When("users get booking details with ID from get all bookings response")
     public void usersGetBookingDetailsWithID() {
         context.logger.info("Getting bookingID....");
-        context.response.jsonPath().getString("[1].bookingid");
+        String bookingID = context.response.jsonPath().getString("[1].bookingid");
         Assert.assertNotNull("BookingId not found", bookingID);
         context.response = bookingHelper.getBookingsWithPathParam(bookingID);
         Assert.assertNotNull("firstname not found", context.response.jsonPath().getString("firstname"));
@@ -75,5 +76,12 @@ public class BookingGetSteps {
         }
 
 
+    }
+
+    @Then("users get booking details with ID from created booking")
+    public void usersGetBookingDetailsWithIDFromCreatedBooking() {
+        context.logger.info("Getting booking with ID ");
+        CreateBookingResponse createBookingResponse = ContextStore.get("CreateBookingResponse");
+        context.response = bookingHelper.getBookingsWithPathParam(String.valueOf(createBookingResponse.bookingid));
     }
 }

@@ -15,7 +15,7 @@ Feature: Get Bookings
   @regression @happyPath
   Scenario: Get booking details by ID
     Given users get all bookings
-    When users get booking details with ID
+    When users get booking details with ID from get all bookings response
     Then the response status code should be 200
     And the response body should not be null
     And the response body should match the schema GetBookingsSchema.json
@@ -23,7 +23,7 @@ Feature: Get Bookings
 
   @regression @happyPath
   Scenario Outline: Get booking with query parameters
-    Given users create a new booking with the following details:
+    Given the user creates a new booking with the following details:
       | firstname | lastname | totalprice | depositpaid | checkin    | checkout   | additionalneeds |
       | Onur      | T.       | 100        | true        | 2018-01-01 | 2018-01-02 | komili          |
     When users try to get booking with "<keys>" and "<values>" parameters

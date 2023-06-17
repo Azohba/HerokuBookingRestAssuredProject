@@ -82,8 +82,8 @@ public class BookingHelper extends RestAssuredClient {
         return get(endpoint, params, null, null);
     }
 
-    public Response getBookingsWithPathParam(String params) {
-        return get(endpoint + "/" + params, null, null, null);
+    public Response getBookingsWithPathParam(String pathParams) {
+        return get(endpoint + "/" + pathParams, null, null, null);
     }
 
     public Response partialUpdateBooking(Map<String, String> body, String bookingId) {
@@ -96,9 +96,25 @@ public class BookingHelper extends RestAssuredClient {
         return patch(endpoint + "/" + bookingId, null, null, body);
     }
 
-    public Response deleteBooking(String bookingId){
+    public Response deleteBooking(String bookingId) {
         Map<String, Object> tokenCookie = new HashMap<>();
         tokenCookie.put("Cookie", "token=" + token);
-        return delete(endpoint+"/" + bookingId, null, tokenCookie, null);
+        return delete(endpoint + "/" + bookingId, null, tokenCookie, null);
     }
+
+    public Response deleteBookingInvalidToken(String bookingId, String params) {
+        Map<String, Object> tokenCookie = new HashMap<>();
+        tokenCookie.put("Cookie", "token=" + params);
+        return delete(endpoint + "/" + bookingId, null, tokenCookie, null);
+
+    }
+
+    public Response deleteBookingInvalidID(String params) {
+        Map<String, Object> tokenCookie = new HashMap<>();
+        tokenCookie.put("Cookie", "token=" + token);
+        return delete(endpoint + "/" + params, null, tokenCookie, null);
+
+    }
+
+
 }

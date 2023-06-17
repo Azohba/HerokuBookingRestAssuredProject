@@ -21,7 +21,7 @@ public class BookingUpdateSteps {
         this.context = context;
     }
 
-    @When("user update following fields:")
+    @When("user updates the following fields:")
     public void userUpdateFollowingFields(DataTable table) {
         context.logger.info("Update partial fields");
         Map<String, String> updateElements = table.asMaps().get(0);
@@ -41,7 +41,7 @@ public class BookingUpdateSteps {
 
     }
 
-    @When("user try to update following fields without token:")
+    @When("user tries to update the following fields without a token:")
     public void userTryToUpdateFollowingFieldsWithoutToken(DataTable table) {
         context.logger.info("Update partial fields");
         Map<String, String> updateElements = table.asMaps().get(0);

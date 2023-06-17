@@ -5,7 +5,7 @@ Feature: Create Booking
 
   @regression @happyPath @createBooking
   Scenario: Create new booking
-    When users create a new booking with the following details:
+    When the user creates a new booking with the following details:
       | firstname | lastname | totalprice | depositpaid | checkin    | checkout   | additionalneeds |
       | Onur      | T.       | 100        | true        | 2018-01-01 | 2018-01-02 | komili          |
     Then the response status code should be 200
