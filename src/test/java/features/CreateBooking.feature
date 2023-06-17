@@ -1,5 +1,8 @@
 Feature: Create Booking
-#Done
+
+  Background:
+    Given set endpoint as "/booking"
+
   @regression @happyPath @createBooking
   Scenario: Create new booking
     When users create a new booking with the following details:

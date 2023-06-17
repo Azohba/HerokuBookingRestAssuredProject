@@ -5,13 +5,14 @@ import org.junit.Assert;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.logging.Logger;
 
 public class CommonHelper {
-    public static Logger logger = Logger.getLogger(String.valueOf(CommonHelper.class));
+    public  Logger logger = Logger.getLogger(String.valueOf(CommonHelper.class));
     public Response response;
 
     public int getRandomNumber(Integer bound) {

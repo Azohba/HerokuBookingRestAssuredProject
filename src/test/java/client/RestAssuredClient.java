@@ -35,6 +35,13 @@ public abstract class RestAssuredClient {
         return response;
     }
 
+    public Response patch(String path, Map<String, Object> params, Map<String, Object> headers, Object body) {
+        setHttpRequest(params, headers, body);
+        Response response = httpRequest.patch(path);
+        response.then().log().body();
+        return response;
+    }
+
     public Response delete(String path, Map<String, Object> params, Map<String, Object> headers, String body) {
         setHttpRequest(params, headers, body);
         Response response = httpRequest.delete(path);
@@ -44,17 +51,12 @@ public abstract class RestAssuredClient {
 
 
     protected void setHttpRequest(Map<String, Object> params, Map<String, Object> headers, Object body) {
-
-        // Restasssured a bütün req,response akışında log yetkisi veriliyor
-
         httpRequest = RestAssured.given()
                 .log()
                 .all(true);
-        //Req body tanımlamaları
         httpRequest.baseUri(baseUrl);
         httpRequest.header("Content-type", "application/json");
         httpRequest.header("xAutomation", true);
-        //Aşagıda belirtilen bütün parametreler bir req içerisinde boşta olabileceği için olmadığı durumlarda eklemesini yapıyoruz.
         if (params != null) {
             httpRequest.queryParams(params);
         }

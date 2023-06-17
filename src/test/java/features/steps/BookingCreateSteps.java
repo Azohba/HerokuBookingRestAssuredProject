@@ -1,5 +1,6 @@
-package steps;
+package features.steps;
 
+import context.ContextStore;
 import helpers.BookingHelper;
 import helpers.CommonHelper;
 import io.cucumber.datatable.DataTable;
@@ -13,38 +14,39 @@ import java.util.Map;
 
 public class BookingCreateSteps {
     BookingHelper bookingHelper = new BookingHelper();
-    static CreateBookingResponse createBookingResponse;
-    private CommonHelper commonHelper;
+    private CommonHelper context;
 
-    public BookingCreateSteps(CommonHelper commonHelper) {
-        this.commonHelper = commonHelper;
+    public BookingCreateSteps(CommonHelper context) {
+        this.context = context;
     }
 
     @When("users create a new booking with the following details:")
     public void usersCreateANewBookingWithTheFollowingDetails(DataTable table) throws ParseException {
         Map<String, String> createBookingElements = table.asMaps().get(0);
-        commonHelper.response = bookingHelper.createBooking(createBookingElements.get("firstname")
+        context.response = bookingHelper.createBooking(createBookingElements.get("firstname")
                 , createBookingElements.get("lastname")
                 , createBookingElements.get("totalprice")
                 , createBookingElements.get("depositpaid")
                 , createBookingElements.get("checkin")
                 , createBookingElements.get("checkout")
                 , createBookingElements.get("additionalneeds"));
-        createBookingResponse = commonHelper.response.body().as(CreateBookingResponse.class);
+        CreateBookingResponse createBookingResponse = context.response.body().as(CreateBookingResponse.class);
+        ContextStore.put("CreateBookingResponse", createBookingResponse);
+
     }
 
     @And("the response body should contain the following booking details:")
     public void theResponseBodyShouldContainTheFollowingBookingDetails(DataTable table) throws ParseException {
         Map<String, String> createBookingElements = table.asMaps().get(0);
-        commonHelper.response = bookingHelper.createBooking(createBookingElements.get("firstname")
+        context.response = bookingHelper.createBooking(createBookingElements.get("firstname")
                 , createBookingElements.get("lastname")
                 , createBookingElements.get("totalprice")
                 , createBookingElements.get("depositpaid")
                 , createBookingElements.get("checkin")
                 , createBookingElements.get("checkout")
                 , createBookingElements.get("additionalneeds"));
-        createBookingResponse = commonHelper.response.body().as(CreateBookingResponse.class);
-
+        CreateBookingResponse createBookingResponse = context.response.body().as(CreateBookingResponse.class);
+        ContextStore.put("CreateBookingResponse", createBookingResponse);
 
         Assert.assertNotNull("BookingID is Null!!!", createBookingResponse.bookingid);
         Assert.assertEquals(createBookingElements.get("firstname"), createBookingResponse.booking.firstname);
@@ -60,9 +62,9 @@ public class BookingCreateSteps {
 
     @When("a user tries to create a booking with invalid data")
     public void aUserTriesToCreateABookingWithInvalidData(DataTable table) {
-        CommonHelper.logger.info("Trying to create booking with invalid data");
+        context.logger.info("Trying to create booking with invalid data");
         Map<String, String> createBookingElements = table.asMaps().get(0);
-        commonHelper.response = bookingHelper.createBookingNegative(createBookingElements.get("firstname")
+        context.response = bookingHelper.createBookingNegative(createBookingElements.get("firstname")
                 , createBookingElements.get("lastname")
                 , createBookingElements.get("totalprice")
                 , createBookingElements.get("depositpaid")

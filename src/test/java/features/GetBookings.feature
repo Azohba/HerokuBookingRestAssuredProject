@@ -1,6 +1,9 @@
 @getbookings
 Feature: Get Bookings
 
+  Background: Set endpoint
+    Given set endpoint as "/booking"
+
   @regression @happyPath
   Scenario: Get all bookings without filters
     When users get all bookings
