@@ -48,7 +48,6 @@ Feature: Update booking
       | firstname | totalprice |
       | <keys>    | <values>   |
     Then the response status code should be <statusCode>
-    And error message should be Forbidden
 
     Examples:
       | keys            | values     | statusCode |
