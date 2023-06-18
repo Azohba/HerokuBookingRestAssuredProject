@@ -17,7 +17,7 @@ public abstract class RestAssuredClient {
     public Response get(String path, Map<String, Object> params, Map<String, Object> headers, Object body) {
         setHttpRequest(params, headers, body);
         Response response = httpRequest.get(path);
-      //  response.then().log().body();
+         response.then().log().body();
         return response;
     }
 
