@@ -6,7 +6,7 @@ Feature: Update booking
     And the user creates a new booking with the following details:
       | firstname | lastname | totalprice | depositpaid | checkin    | checkout   | additionalneeds |
       | Onur      | T.       | 100        | true        | 2018-01-01 | 2018-01-02 | komili          |
-    Then the response status code should be 200
+    And the response status code should be 200
 
 
   @regression @happyPath

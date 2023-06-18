@@ -32,7 +32,7 @@ public class BookingDeleteSteps {
     @When("user send invalid {} path parameter")
     public void userTriesToDeleteBookingInvalidID(String params) {
         context.logger.info("Deleting created data without token");
-        context.response = bookingHelper.deleteBookingInvalidToken(String.valueOf(createBookingResponse.bookingid), params);
+        context.response = bookingHelper.deleteBookingInvalidID(params);
     }
 
 }

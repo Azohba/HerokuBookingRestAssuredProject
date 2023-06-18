@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +20,7 @@ import java.util.logging.Logger;
 public class CommonHelper {
     public Logger logger = Logger.getLogger(String.valueOf(CommonHelper.class));
     public Response response;
+    public ArrayList<Integer> createdBookingIds = new ArrayList<>();
 
     public void compareDates(String checkIn, String checkOut) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

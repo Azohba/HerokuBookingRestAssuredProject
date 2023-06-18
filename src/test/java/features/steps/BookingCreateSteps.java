@@ -42,6 +42,7 @@ public class BookingCreateSteps {
         createdBookingInputData.put("checkin",createBookingElements.get("checkin"));
         createdBookingInputData.put("checkout",createBookingElements.get("checkout"));
         createdBookingInputData.put("additionalneeds",createBookingElements.get("additionalneeds"));
+        context.createdBookingIds.add(createBookingResponse.bookingid);
 
     }
 
