@@ -13,13 +13,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+import static config.ApiConstant.Booking.Endpoints.BOOKING;
+import static config.ApiConstant.Booking.Endpoints.AUTH;
+
 public class BookingHelper extends RestAssuredClient {
     public BookingHelper() {
         super(ApiConstant.Booking.BASE_URL);
     }
 
     CommonHelper commonHelper = new CommonHelper();
-    String endpoint = ContextStore.get("endpoint");
     String token = ContextStore.get("token");
 
 
@@ -27,7 +29,7 @@ public class BookingHelper extends RestAssuredClient {
         commonHelper.logger.info("Authentication");
 
         GetTokenRequest getTokenRequest = GetTokenRequest.builder().username(username).password(password).build();
-        return post(endpoint, null, null, getTokenRequest);
+        return post(AUTH, null, null, getTokenRequest);
     }
 
     public Response createBooking(String firstname,
@@ -49,7 +51,7 @@ public class BookingHelper extends RestAssuredClient {
                 .depositpaid(Boolean.parseBoolean(depositpaid))
                 .bookingdates(bookingDates)
                 .additionalneeds(additionalneeds).build();
-        return post(endpoint, null, null, createBookingRequest);
+        return post(BOOKING, null, null, createBookingRequest);
     }
 
     public Response createBookingNegative(String firstname,
@@ -70,49 +72,49 @@ public class BookingHelper extends RestAssuredClient {
                 .bookingdates(bookingDates)
                 .additionalneeds(additionalneeds).build();
 
-        return post(endpoint, null, null, createBookingRequest);
+        return post(BOOKING, null, null, createBookingRequest);
 
     }
 
     public Response getBookingsID() {
-        return get(endpoint, null, null, null);
+        return get(BOOKING, null, null, null);
     }
 
     public Response getBookingsWithParams(Map<String, Object> params) {
-        return get(endpoint, params, null, null);
+        return get(BOOKING, params, null, null);
     }
 
     public Response getBookingsWithPathParam(String pathParams) {
-        return get(endpoint + "/" + pathParams, null, null, null);
+        return get(BOOKING + "/" + pathParams, null, null, null);
     }
 
     public Response partialUpdateBooking(Map<String, String> body, String bookingId) {
         Map<String, Object> tokenCookie = new HashMap<>();
         tokenCookie.put("Cookie", "token=" + token);
-        return patch(endpoint + "/" + bookingId, null, tokenCookie, body);
+        return patch(BOOKING + "/" + bookingId, null, tokenCookie, body);
     }
 
     public Response updateWithoutToken(Map<String, String> body, String bookingId) {
-        return patch(endpoint + "/" + bookingId, null, null, body);
+        return patch(BOOKING + "/" + bookingId, null, null, body);
     }
 
     public Response deleteBooking(String bookingId) {
         Map<String, Object> tokenCookie = new HashMap<>();
         tokenCookie.put("Cookie", "token=" + token);
-        return delete(endpoint + "/" + bookingId, null, tokenCookie, null);
+        return delete(BOOKING + "/" + bookingId, null, tokenCookie, null);
     }
 
     public Response deleteBookingInvalidToken(String bookingId, String params) {
         Map<String, Object> tokenCookie = new HashMap<>();
         tokenCookie.put("Cookie", "token=" + params);
-        return delete(endpoint + "/" + bookingId, null, tokenCookie, null);
+        return delete(BOOKING + "/" + bookingId, null, tokenCookie, null);
 
     }
 
     public Response deleteBookingInvalidID(String params) {
         Map<String, Object> tokenCookie = new HashMap<>();
         tokenCookie.put("Cookie", "token=" + token);
-        return delete(endpoint + "/" + params, null, tokenCookie, null);
+        return delete(BOOKING + "/" + params, null, tokenCookie, null);
 
     }
 

@@ -1,8 +1,5 @@
 Feature: Create Booking
 
-  Background:
-    Given set endpoint as "/booking"
-
   @regression @happyPath @createBooking
   Scenario: Create new booking
     When the user creates a new booking with the following details:
@@ -11,9 +8,7 @@ Feature: Create Booking
     Then the response status code should be 200
     And the response body should not be null
     And the response body should match the schema CreateBookingSchema.json
-    And the response body should contain the following booking details:
-      | firstname | lastname | totalprice | depositpaid | checkin    | checkout   | additionalneeds |
-      | Onur      | T.       | 100        | true        | 2018-01-01 | 2018-01-02 | komili          |
+    And the response body should contain created booking details
 
   @regression @negativeCases @createBooking
   Scenario Outline: Create new booking negative scenarios

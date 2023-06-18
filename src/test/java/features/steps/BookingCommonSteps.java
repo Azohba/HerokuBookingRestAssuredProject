@@ -19,7 +19,7 @@ public class BookingCommonSteps {
     @Then("the response status code should be {}")
     public void theResponseStatusCodeShouldBe(String statusCode) {
          context.logger.info("Check status code is " + statusCode + "");
-        Assert.assertEquals("Response code is not " + statusCode + "", statusCode, String.valueOf(context.response.getStatusCode()));
+        Assert.assertEquals("Response code is not " + statusCode + "",statusCode,String.valueOf(context.response.getStatusCode()) );
 
     }
 
@@ -44,11 +44,6 @@ public class BookingCommonSteps {
 
     }
 
-    @Given("set endpoint as {string}")
-    public void setEndpointAsA(String endpoint) {
-        context.logger.info("Setting endpoint");
-        ContextStore.put("endpoint",endpoint);
-    }
 
 }
 

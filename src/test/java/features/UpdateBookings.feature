@@ -2,9 +2,7 @@
 Feature: Update booking
 
   Background: Set endpoint and create new booking
-    Given set endpoint as "/auth"
-    And get auth token with following credentials admin & password123
-    And set endpoint as "/booking"
+    Given get auth token with following credentials admin & password123
     And the user creates a new booking with the following details:
       | firstname | lastname | totalprice | depositpaid | checkin    | checkout   | additionalneeds |
       | Onur      | T.       | 100        | true        | 2018-01-01 | 2018-01-02 | komili          |
@@ -22,6 +20,12 @@ Feature: Update booking
     And  updated fields should be updated:
       | firstname | totalprice |
       | Spidey    | 210        |
+    When users get booking details with ID from created booking
+    And  updated fields should be updated:
+      | firstname | totalprice |
+      | Spidey    | 210        |
+
+
 
 
   @regression @negativeCases

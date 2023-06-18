@@ -1,6 +1,4 @@
 Feature: Authentication
-  Background:
-    Given set endpoint as "/auth"
 
   @regression @happyPath
   Scenario: Get Auth token

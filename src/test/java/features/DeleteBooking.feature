@@ -2,9 +2,7 @@
 Feature: Delete booking feature
 
   Background: Create booking before delete booking
-    Given set endpoint as "/auth"
-    And get auth token with following credentials admin & password123
-    And set endpoint as "/booking"
+    Given get auth token with following credentials admin & password123
     When the user creates a new booking with the following details:
       | firstname | lastname | totalprice | depositpaid | checkin    | checkout   | additionalneeds |
       | Onur      | T.       | 100        | true        | 2018-01-01 | 2018-01-02 | komili          |
@@ -12,13 +10,12 @@ Feature: Delete booking feature
 
   @regression @happyPath
   Scenario: Delete booking
-    Given set endpoint as "/booking"
     When user deletes booking with ID
+    And the response status code should be 201
     And users get booking details with ID from created booking
     Then error message should be Not Found
 
   Scenario Outline: User tries to delete booking invalid token
-    Given set endpoint as "/booking"
     When user tries to delete booking with invalid <token>
     Then the response status code should be 403
     And error message should be Forbidden
@@ -29,7 +26,6 @@ Feature: Delete booking feature
       |       |
 
   Scenario Outline:  User tries to delete booking invalid ID
-    Given set endpoint as "/booking"
     When user send invalid <ID> path parameter
     Then the response status code should be 403
     And error message should be Forbidden
