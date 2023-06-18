@@ -17,15 +17,9 @@ Feature: Update booking
     Then the response status code should be 200
     And the response body should match the schema UpdateBookingSchema.json
     And the response body should not be null
-    And  updated fields should be updated:
-      | firstname | totalprice |
-      | Spidey    | 210        |
+    And  updated fields should be updated
     When users get booking details with ID from created booking
-    And  updated fields should be updated:
-      | firstname | totalprice |
-      | Spidey    | 210        |
-
-
+    And  updated fields should be updated
 
 
   @regression @negativeCases
