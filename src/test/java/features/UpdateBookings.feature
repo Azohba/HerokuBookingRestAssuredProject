@@ -1,7 +1,7 @@
 @UpdateBooking
 Feature: Update booking
 
-  Background: Set endpoint and create new booking
+  Background: Get Token and create new booking
     Given get auth token with following credentials admin & password123
     And the user creates a new booking with the following details:
       | firstname | lastname | totalprice | depositpaid | checkin    | checkout   | additionalneeds |
