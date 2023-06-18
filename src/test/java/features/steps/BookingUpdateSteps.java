@@ -8,7 +8,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import models.response.CreateBookingResponse;
 import models.response.BookingResponse;
-import models.response.UpdatedBookingResponse;
 import org.junit.Assert;
 
 import java.util.HashMap;
