@@ -82,6 +82,6 @@ public class BookingGetSteps {
     public void usersGetBookingDetailsWithIDFromCreatedBooking() {
         context.logger.info("Getting booking with ID ");
         CreateBookingResponse createBookingResponse = ContextStore.get("CreateBookingResponse");
-        context.response = bookingHelper.getBookingsWithPathParam(String.valueOf(createBookingResponse.bookingid));
+        context.getBookingResp = bookingHelper.getBookingsWithPathParam(String.valueOf(createBookingResponse.bookingid));
     }
 }

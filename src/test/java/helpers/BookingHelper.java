@@ -7,14 +7,15 @@ import io.restassured.response.Response;
 import models.request.CreateBookingNegativeRequest;
 import models.request.CreateBookingRequest;
 import models.request.GetTokenRequest;
+import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-
-import static config.ApiConstant.Booking.Endpoints.BOOKING;
 import static config.ApiConstant.Booking.Endpoints.AUTH;
+import static config.ApiConstant.Booking.Endpoints.BOOKING;
 
 public class BookingHelper extends RestAssuredClient {
     public BookingHelper() {
@@ -88,14 +89,18 @@ public class BookingHelper extends RestAssuredClient {
         return get(BOOKING + "/" + pathParams, null, null, null);
     }
 
-    public Response partialUpdateBooking(Map<String, String> body, String bookingId) {
+    public Response partialUpdateBooking(List<List<String>> dataList, String bookingId) {
         Map<String, Object> tokenCookie = new HashMap<>();
         tokenCookie.put("Cookie", "token=" + token);
-        return patch(BOOKING + "/" + bookingId, null, tokenCookie, body);
+        return patch(BOOKING + "/" + bookingId, null, tokenCookie, commonHelper.reqBody(dataList));
     }
 
-    public Response updateWithoutToken(Map<String, String> body, String bookingId) {
-        return patch(BOOKING + "/" + bookingId, null, null, body);
+
+
+    public Response updateWithoutToken(List<List<String>> dataList, String bookingId) {
+        JSONObject reqBody = new JSONObject();
+        reqBody.put(String.valueOf(dataList.get(0).get(0)),dataList.get(0).get(1));
+        return patch(BOOKING + "/" + bookingId, null, null,reqBody.toString() );
     }
 
     public Response deleteBooking(String bookingId) {
@@ -117,8 +122,6 @@ public class BookingHelper extends RestAssuredClient {
         return delete(BOOKING + "/" + params, null, tokenCookie, null);
 
     }
-
-
 
 
 }

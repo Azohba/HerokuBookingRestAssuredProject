@@ -1,26 +1,42 @@
 package helpers;
 
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import org.json.JSONObject;
 import org.junit.Assert;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
 
 public class CommonHelper {
     public Logger logger = Logger.getLogger(String.valueOf(CommonHelper.class));
     public Response response;
+    public Response getBookingResp;
+
+
     public ArrayList<Integer> createdBookingIds = new ArrayList<>();
+
+    public String reqBody(List<List<String>> dataList) {
+        JSONObject reqBody = new JSONObject();
+        int dataSize = dataList.size();
+        String value;
+        for (int i = 0; i < dataSize; i++) {
+            if (dataList.get(i).get(0).equalsIgnoreCase("keys")){
+                i++;
+                dataSize--;
+            }
+            if (dataList.get(i).get(1)== null){
+              value =String.valueOf(JSONObject.NULL) ;
+            }else{
+                value =dataList.get(i).get(1);
+            }
+            reqBody.put(String.valueOf(dataList.get(i).get(0)), value);
+        }
+        return reqBody.toString();
+    }
+
 
     public void compareDates(String checkIn, String checkOut) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

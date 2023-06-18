@@ -3,10 +3,10 @@ Feature: Delete booking feature
 
   Background: Create booking before delete booking
     Given get auth token with following credentials admin & password123
-    When the user creates a new booking with the following details:
+    And the user creates a new booking with the following details:
       | firstname | lastname | totalprice | depositpaid | checkin    | checkout   | additionalneeds |
       | Onur      | T.       | 100        | true        | 2018-01-01 | 2018-01-02 | komili          |
-    Then  the response status code should be 200
+    And  the response status code should be 200
 
   @regression @happyPath
   Scenario: Delete booking

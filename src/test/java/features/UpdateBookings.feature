@@ -12,21 +12,21 @@ Feature: Update booking
   @regression @happyPath
   Scenario: Update booking partially with basic authentication
     When user updates the following fields:
-      | firstname | totalprice |
-      | Spidey    | 210        |
+      | firstname  | Onn |
+      | totalprice | 22  |
+    And users get booking details with ID from created booking
     Then the response status code should be 200
     And the response body should match the schema UpdateBookingSchema.json
     And the response body should not be null
-    And  updated fields should be updated
-    When users get booking details with ID from created booking
-    And  updated fields should be updated
+    And updated fields should be changed
+      | firstname  | Onn |
+      | totalprice | 22  |
 
 
   @regression @negativeCases
   Scenario Outline: Try to send update request without token
     When user tries to update the following fields without a token:
-      | firstname | Onur     |
-      | <keys>    | <values> |
+      | <keys> | <values> |
     Then the response status code should be 403
     And error message should be Forbidden
 
@@ -43,8 +43,7 @@ Feature: Update booking
   @regression @negativeCases
   Scenario Outline: Partially update negative scenarios
     When user updates the following fields:
-      | firstname | totalprice |
-      | <keys>    | <values>   |
+      | <keys> | <values> |
     Then the response status code should be <statusCode>
 
     Examples:
