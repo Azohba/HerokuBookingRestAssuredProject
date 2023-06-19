@@ -19,6 +19,5 @@ public class HooksSteps {
             bookingHelper.deleteBooking(String.valueOf(context.createdBookingIds.get(i)));
             context.logger.info(context.createdBookingIds.get(i) + "deleted");
         }
-        context.logger.info("All bookings are deleted" + context.createdBookingIds );
     }
 }

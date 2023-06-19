@@ -19,7 +19,7 @@ public class BookingAuthSteps {
     @And("the token value should not be null")
     public void checkTokenIsNotNull() {
         context.logger.info("Check token and set it");
-        Assert.assertNotNull("Check token is created", context.response.jsonPath().getString("token"));
+        Assert.assertNotNull("Check token is created", ContextStore.get("token"));
     }
 
     @When("send {} and {}")
