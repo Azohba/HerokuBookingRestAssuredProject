@@ -13,11 +13,6 @@ import org.junit.runner.RunWith;
 )
 public class TestRunner {
 
-    @AfterClass
-    public static void finalSequence() {
-
-
-    }
 
 }
 
