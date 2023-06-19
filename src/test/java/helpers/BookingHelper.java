@@ -96,11 +96,10 @@ public class BookingHelper extends RestAssuredClient {
     }
 
 
-
     public Response updateWithoutToken(List<List<String>> dataList, String bookingId) {
         JSONObject reqBody = new JSONObject();
-        reqBody.put(String.valueOf(dataList.get(0).get(0)),dataList.get(0).get(1));
-        return patch(BOOKING + "/" + bookingId, null, null,reqBody.toString() );
+        reqBody.put(String.valueOf(dataList.get(0).get(0)), dataList.get(0).get(1));
+        return patch(BOOKING + "/" + bookingId, null, null, reqBody.toString());
     }
 
     public Response deleteBooking(String bookingId) {

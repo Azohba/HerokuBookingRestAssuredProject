@@ -1,26 +1,21 @@
 package features.steps;
 
-import com.google.gson.JsonObject;
 import context.ContextStore;
 import helpers.BookingHelper;
 import helpers.CommonHelper;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
-import models.response.CreateBookingResponse;
 import models.response.BookingResponse;
+import models.response.CreateBookingResponse;
 import org.junit.Assert;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class BookingUpdateSteps {
     private CommonHelper context;
     BookingHelper bookingHelper = new BookingHelper();
     CreateBookingResponse createBookingResponse = ContextStore.get("CreateBookingResponse");
-    private Map<String, String> updatedData = new HashMap<>();
 
     public BookingUpdateSteps(CommonHelper context) {
         this.context = context;
@@ -30,7 +25,7 @@ public class BookingUpdateSteps {
     public void userUpdateFollowingFields(DataTable table) {
         context.logger.info("Update partial fields");
         List<List<String>> dataList = table.asLists(String.class);
-        context.response = bookingHelper.partialUpdateBooking(dataList,String.valueOf(createBookingResponse.bookingid));
+        context.response = bookingHelper.partialUpdateBooking(dataList, String.valueOf(createBookingResponse.bookingid));
         BookingResponse bookingResponse = context.response.as(BookingResponse.class);
         ContextStore.put("UpdatedBookingResponse", bookingResponse);
     }
@@ -42,7 +37,7 @@ public class BookingUpdateSteps {
         List<List<String>> dataList = table.asLists(String.class);
         BookingResponse bookingResponse = ContextStore.get("UpdatedBookingResponse");
         Assert.assertEquals(dataList.get(0).get(1), bookingResponse.firstname);
-        Assert.assertEquals(dataList.get(1).get(1),String.valueOf(bookingResponse.totalprice) );
+        Assert.assertEquals(dataList.get(1).get(1), String.valueOf(bookingResponse.totalprice));
 
     }
 

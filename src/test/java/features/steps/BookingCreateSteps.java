@@ -16,7 +16,7 @@ import java.util.Map;
 public class BookingCreateSteps {
     BookingHelper bookingHelper = new BookingHelper();
     private CommonHelper context;
-    private Map<String,String> createdBookingInputData = new HashMap<>();
+    private Map<String, String> createdBookingInputData = new HashMap<>();
 
     public BookingCreateSteps(CommonHelper context) {
         this.context = context;
@@ -25,31 +25,31 @@ public class BookingCreateSteps {
     @When("the user creates a new booking with the following details:")
     public void usersCreateANewBookingWithTheFollowingDetails(DataTable table) throws ParseException {
         Map<String, String> createBookingElements = table.asMaps().get(0);
-        ContextStore.put("createBookingElements",createBookingElements);
+        ContextStore.put("createBookingElements", createBookingElements);
         context.response = bookingHelper.createBooking(createBookingElements.get("firstname")
-                ,createBookingElements.get("lastname")
-                ,createBookingElements.get("totalprice")
-                ,createBookingElements.get("depositpaid")
-                ,createBookingElements.get("checkin")
-                ,createBookingElements.get("checkout")
-                ,createBookingElements.get("additionalneeds"));
+                , createBookingElements.get("lastname")
+                , createBookingElements.get("totalprice")
+                , createBookingElements.get("depositpaid")
+                , createBookingElements.get("checkin")
+                , createBookingElements.get("checkout")
+                , createBookingElements.get("additionalneeds"));
         CreateBookingResponse createBookingResponse = context.response.body().as(CreateBookingResponse.class);
         ContextStore.put("CreateBookingResponse", createBookingResponse);
-        createdBookingInputData.put("firstname",createBookingElements.get("firstname"));
-        createdBookingInputData.put("lastname",createBookingElements.get("lastname"));
-        createdBookingInputData.put("totalprice",createBookingElements.get("totalprice"));
-        createdBookingInputData.put("depositpaid",createBookingElements.get("depositpaid"));
-        createdBookingInputData.put("checkin",createBookingElements.get("checkin"));
-        createdBookingInputData.put("checkout",createBookingElements.get("checkout"));
-        createdBookingInputData.put("additionalneeds",createBookingElements.get("additionalneeds"));
+        createdBookingInputData.put("firstname", createBookingElements.get("firstname"));
+        createdBookingInputData.put("lastname", createBookingElements.get("lastname"));
+        createdBookingInputData.put("totalprice", createBookingElements.get("totalprice"));
+        createdBookingInputData.put("depositpaid", createBookingElements.get("depositpaid"));
+        createdBookingInputData.put("checkin", createBookingElements.get("checkin"));
+        createdBookingInputData.put("checkout", createBookingElements.get("checkout"));
+        createdBookingInputData.put("additionalneeds", createBookingElements.get("additionalneeds"));
         context.createdBookingIds.add(createBookingResponse.bookingid);
 
     }
 
     @And("the response body should contain created booking details")
     public void theResponseBodyShouldContainTheFollowingBookingDetails() {
-       CreateBookingResponse createBookingResponse = ContextStore.get("CreateBookingResponse");
-       Map<String,String> createdBookingInputData = ContextStore.get("createBookingElements");
+        CreateBookingResponse createBookingResponse = ContextStore.get("CreateBookingResponse");
+        Map<String, String> createdBookingInputData = ContextStore.get("createBookingElements");
         Assert.assertNotNull("BookingID is Null!!!", createBookingResponse.bookingid);
         Assert.assertEquals(createdBookingInputData.get("firstname"), createBookingResponse.booking.firstname);
         Assert.assertEquals(createdBookingInputData.get("lastname"), createBookingResponse.booking.lastname);

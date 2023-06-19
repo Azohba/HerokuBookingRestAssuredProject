@@ -1,9 +1,7 @@
 package features.steps;
 
-import context.ContextStore;
 import helpers.CommonHelper;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.junit.Assert;
@@ -18,8 +16,8 @@ public class BookingCommonSteps {
 
     @Then("the response status code should be {}")
     public void theResponseStatusCodeShouldBe(String statusCode) {
-         context.logger.info("Check status code is " + statusCode + "");
-        Assert.assertEquals("Response code is not " + statusCode + "",statusCode,String.valueOf(context.response.getStatusCode()) );
+        context.logger.info("Check status code is " + statusCode + "");
+        Assert.assertEquals("Response code is not " + statusCode + "", statusCode, String.valueOf(context.response.getStatusCode()));
 
     }
 

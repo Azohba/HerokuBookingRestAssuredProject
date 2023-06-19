@@ -1,13 +1,14 @@
 package helpers;
 
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 import org.junit.Assert;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class CommonHelper {
@@ -23,14 +24,14 @@ public class CommonHelper {
         int dataSize = dataList.size();
         String value;
         for (int i = 0; i < dataSize; i++) {
-            if (dataList.get(i).get(0).equalsIgnoreCase("keys")){
+            if (dataList.get(i).get(0).equalsIgnoreCase("keys")) {
                 i++;
                 dataSize--;
             }
-            if (dataList.get(i).get(1)== null){
-              value =String.valueOf(JSONObject.NULL) ;
-            }else{
-                value =dataList.get(i).get(1);
+            if (dataList.get(i).get(1) == null) {
+                value = String.valueOf(JSONObject.NULL);
+            } else {
+                value = dataList.get(i).get(1);
             }
             reqBody.put(String.valueOf(dataList.get(i).get(0)), value);
         }

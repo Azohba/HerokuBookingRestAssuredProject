@@ -15,7 +15,6 @@ public class BookingAuthSteps {
         this.context = context;
     }
 
-
     @And("the token value should not be null")
     public void checkTokenIsNotNull() {
         context.logger.info("Check token and set it");
