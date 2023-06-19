@@ -49,8 +49,10 @@ mvn test
 
 ## Features 
 1. Generates a Cucumber report with all the step details. Reports will be generated in both HTML & JSON file format in "target/reports"
+   <img src="https://github.com/Azohba/HerokuBookingRestAssuredProject/assets/75690034/2ac3ccc7-220c-4711-9319-dbd60e25281d" width="650" height="450">
 2. Added specific validations on the response body by using JSON schema and Java POJO classes.
-3. Easy integrable with CI/CD pipeline in regards to parallel execution. 
+3. Easy integrable with CI/CD pipeline in regards to parallel execution.
+   
 
 ## Documentation
 Automated tests application's document.
@@ -59,6 +61,7 @@ Automated tests application's document.
 
 ## Notes
 I've written all test assertions by accepting the current behavior of the Heroku application as acceptance criteria. However, the below scenarios should have failed in accordance with real backend behaviors:
-1. Status codes are not returned correctly when I send POST, PUT, and DELETE requests. The response codes should be tailored according to the HTTP request method. For instance it should return 201 when I call a POST request for creating booking.
-2. If you send negative query parameters, it returns a fulfilled response body. However I expected to see some spesific errors. For instance when I send a PATCH call within null firstname in update booking payload
+1. Status codes are not returned correctly when I send POST, PUT, and DELETE requests. The response codes should be tailored according to the HTTP request method. For instance, it should return 201 when I call a POST request for creating a booking.
+2. If you send negative query parameters, it returns a fulfilled response body. However, I expected to see some specific errors. For instance when I send a PATCH call within null firstname in update booking payload
 3. There is no control over check-in and check-out dates. You can use any dates you want.
+4. Herokuapp is unstable by considering expected behaviors. As a result of this situation test results could differ.
